@@ -1,24 +1,109 @@
-/* React 컴포넌트 --------------------------------------------------------------- */
+/* React 컴포넌트 -------------------------------------------------------------- */
 
-// 함수(형) 컴포넌트
-function Group() {
+// 일반함수 이름 : camelCase
+// 컴포넌트 이름 : PascalCase
+
+/* 함수 컴포넌트 ------------------------------------------------------------------ */
+
+function AppLogo() {
   return (
-    <div role="group" lang="en">
-      Group Element
-    </div>
+    <h1>
+      <a href="https://netflix.com/">
+        <img src="" alt="" /> 넷플릭스
+      </a>
+    </h1>
   )
 }
 
-// 클래스 컴포넌트
-class Logo extends React.Component {
-  // 렌더링
-  render() {
-    // React 엘리먼트 반환  
-    return (
-      <img src="/assets/react-logo.svg" alt="React" />
-    )
+function AppSearch() {
+  return (
+    <form role="search">
+      <label htmlFor="search">검색</label>
+      <input id="search" type="search" />
+    </form>
+  )
+}
+
+function AppNav() {
+  return (
+    <nav aria-label="">
+      <ul>
+        <li>
+          <a href="">link 1</a>
+        </li>
+        <li>
+          <a href="">link 2</a>
+        </li>
+        <li>
+          <a href="">link 3</a>
+        </li>
+      </ul>
+    </nav>
+  )
+}
+
+function AppHeader() {
+  return (
+    <header>
+      <AppLogo />
+      <AppSearch />
+      <AppNav />    
+    </header>
+  )
+}
+
+function AppMain() {
+  return (
+    <main>
+      <AppLogo />
+      <p>앱 메인 정보를 입력합니다.</p>
+    </main>
+  )
+}
+
+function AppFooter() {
+  return (
+    <footer>
+      <AppLogo />
+      <address>
+        <small>저작권 정보</small>
+      </address>
+    </footer>
+  )
+}
+
+/* 클래스 컴포넌트 ----------------------------------------------------------------- */
+// - 2018년까지는....
+// - 클래스 컴포넌트는 상태를 가질 수 있다.
+// - 함수 컴포넌트는 상태를 가질 수 없다.
+
+class App extends React.Component {
+
+  constructor(props) {
+    super(props);
+
+    // 컴포넌트 상태 
+    // 애플리케이션의 상태
+    // 상태 업데이트 → 다시 렌더링!!!
+    // 선언형 프로그래밍
+    this.state = {
+      headline: '',
+      description: '',
+      subjects: []
+    }
   }
 
+  render() {
+    // const {  } = this.props;
+
+    return (
+      <div className="app">
+        <AppHeader />
+        <AppMain />
+        <AppFooter />
+      </div>
+    )
+  }
 }
 
 /* React DOM 렌더 ------------------------------------------------------------- */
@@ -26,17 +111,7 @@ class Logo extends React.Component {
 const reactDomRoot = ReactDOM.createRoot(document.getElementById('root'));
 
 reactDomRoot.render(
-  [
-    // with JSX
-  <div role="group" lang="en" key="with-jsx">
-    <Logo />
-  </div>,
-
-  // without JSX
-  React.createElement(
-    'div',
-    { role: 'gorup', lang: 'en', key: "without-jsx" },
-    React.createElement(Logo),
-  ),
-  ]
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>
 );
