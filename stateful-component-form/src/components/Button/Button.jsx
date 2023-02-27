@@ -29,6 +29,8 @@ Button.defaultProps = {
 };
 
 Button.propTypes = {
+  /** 버튼 모양을 두번째(secondary)로 설정합니다. */
   secondary: bool,
+  /** 버튼을 비활성화(disabled) 합니다. */
   disabled: bool,
 };
