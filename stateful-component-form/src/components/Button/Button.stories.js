@@ -27,3 +27,22 @@ export const SecondaryDisabled = {
     ...Secondary.args,
   },
 };
+
+export const PrimaryClickable = {
+  args: {
+    onClick() {
+      console.log('회원가입을 요청합니다');
+    },
+  },
+};
+
+export const PrimaryHoverable = {
+  args: {
+    onMouseEnter() {
+      console.log('MouseEnter');
+    },
+    onMouseLeave() {
+      console.log('MouseLeave');
+    },
+  },
+};
