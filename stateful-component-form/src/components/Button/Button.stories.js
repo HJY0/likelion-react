@@ -4,7 +4,7 @@ export default {
   title: 'Lecture/Button',
   component: Button,
   tags: ['autodocs'],
-  args: {Button.defaultProps, children: '회원가입'},
+  args: { ...Button.defaultProps, children: '회원가입' },
 };
 
 export const Primary = {};
