@@ -17,7 +17,7 @@ export function BaseLayout({ className, children, ...restProps }) {
 
   return (
     <div className={combineClassNames} {...restProps}>
-      <Header />
+      <Header logoLabel="Stateful Component & Form Design" navList={navList} />
       <main>
         <Container>{children}</Container>
       </main>

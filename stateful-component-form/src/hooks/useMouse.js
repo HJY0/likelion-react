@@ -1,3 +1,4 @@
+import { debounce } from 'lodash';
 import { useState, useEffect } from 'react';
 
 // 에너테이션 Annotation
@@ -7,16 +8,16 @@ import { useState, useEffect } from 'react';
  * @returns {{x: number, y: number }} 마우스 x, y 위치
  */
 
-export function useMouse() {
+export function useMouse(wait = 1000) {
   const [x, updateX] = useState(0);
   const [y, updateY] = useState(0);
 
   useEffect(() => {
     const EVENT_TYPE = 'mousemove';
-    const handleMouseMove = (e) => {
+    const handleMouseMove = debounce((e) => {
       updateX(e.pageX);
       updateY(e.pageY);
-    };
+    }, wait);
 
     // 이벤트 구독 (subscription)
     globalThis.addEventListener(EVENT_TYPE, handleMouseMove);

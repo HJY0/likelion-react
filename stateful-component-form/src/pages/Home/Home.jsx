@@ -1,4 +1,4 @@
-import { BaseLayout } from '@/components';
+import { BaseLayout, Button, Logo } from '@/components';
 import classes from './Home.module.scss';
 import { useDocumentTitle } from '@/hooks/useDocumentTitle';
 import { useMouse } from '@/hooks/useMouse';
@@ -6,10 +6,9 @@ import { useMouse } from '@/hooks/useMouse';
 /* Component ---------------------------------------------------------------- */
 
 export default function Home() {
-  // useDocumentTitle('홈 → Likelion 4th')
   useDocumentTitle('홈 → Likelion 4th');
 
-  const { x, y } = useMouse;
+  const { x, y } = useMouse(10);
 
   return (
     <BaseLayout>
