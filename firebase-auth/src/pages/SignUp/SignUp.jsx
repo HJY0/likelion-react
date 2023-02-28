@@ -30,9 +30,18 @@ export default function SignUp() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // console.log(formStateRef.current);
+    const { email, password, passwordConfirm } = formStateRef.current;
 
-    const { email, password } = formStateRef.current;
+    // 유효성 검사
+    if (!name || name.trim().length < 2) {
+      console.error('이름은 2글자 이상 입력해야 해요');
+      return;
+    }
+
+    if (!Object.is(password, passwordConfirm)) {
+      console.error('입력한 패스워드를 다시 확인하세요.');
+      return;
+    }
 
     const { user } = await createAuthUser(email, password);
   };

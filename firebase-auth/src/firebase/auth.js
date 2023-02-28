@@ -10,12 +10,13 @@ export const auth = getAuth(app);
  * @returns {Promise<UserCredential>} 사용자 정보 Promise 객체로 반환
  */
 
-export async function createAuthUser(email, password) {
+export async function createAuthUser(email, password, passwordConfirm) {
   try {
     const userCredential = await createUserWithEmailAndPassword(
       auth,
       email,
-      password
+      password,
+      passwordConfirm
     );
 
     return userCredential;
@@ -24,6 +25,14 @@ export async function createAuthUser(email, password) {
     switch (code) {
       case 'auth/email-already-in-use':
         console.error('이미 가입된 이메일입니다.');
+        break;
+      case 'auth/weak-password':
+        console.error(
+          'Firebase 인증 서비스는 6자 이상 비밀번호 입력이 요구됩니다'
+        );
+        break;
+      case 'auth/invalid-email':
+        console.error('유효한 이메일 주소가 아닙니다');
         break;
     }
   }
