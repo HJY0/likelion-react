@@ -2,8 +2,7 @@ import { useRef } from 'react';
 import { BaseLayout, FormInput, Button } from '@/components';
 import classes from './SignUp.module.scss';
 import { useDocumentTitle } from '@/hooks/useDocumentTitle';
-import { auth } from '@/firebase/auth';
-import { createUserWithEmailAndPassword } from '@/firebase/auth';
+import { createAuthUser } from '@/firebase/auth';
 
 const initialFormState = {
   name: '',
@@ -35,17 +34,7 @@ export default function SignUp() {
 
     const { email, password } = formStateRef.current;
 
-    // console.log('회원가입 시도 → Firebase Authentication');
-
-    try {
-      const userCredential = await createUserWithEmailAndPassword(
-        auth,
-        email,
-        password
-      );
-    } catch ({ code, message }) {
-      console.error({ errorCode: code, errorMessage: message });
-    }
+    const { user } = await createAuthUser(email, password);
   };
 
   const handleChangeInput = (e) => {
