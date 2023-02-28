@@ -1,10 +1,9 @@
-import { useRef /* useState */ } from 'react';
+import { useRef } from 'react';
 import { BaseLayout, FormInput, Button } from '@/components';
 import classes from './SignUp.module.scss';
 import { useDocumentTitle } from '@/hooks/useDocumentTitle';
-import { useMouse } from '@/hooks/useMouse';
-// import { EventSubUnsub } from '@/demo/EventSubUnsub';
-// import { validator } from '@/utils';
+import { auth } from '@/firebase/auth';
+import { createUserWithEmailAndPassword } from '@/firebase/auth';
 
 const initialFormState = {
   name: '',
@@ -19,14 +18,7 @@ const initialFormState = {
 // re-rendering (immutation) vs. re-rendering ❌ (mutation)
 
 export default function SignUp() {
-  // const [isVisible, setIsVisible] = useState(true);
-  // const [message, setMessage] = useState('before update');
-
   useDocumentTitle('회원가입 → Likelion 4th');
-
-  const { x, y } = useMouse();
-
-  console.log(x, y);
 
   const formStateRef = useRef(initialFormState);
 
@@ -36,12 +28,24 @@ export default function SignUp() {
     console.log('reset');
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
-    console.log(formStateRef.current);
+    // console.log(formStateRef.current);
 
-    console.log('회원가입 시도 → Firebase Authentication');
+    const { email, password } = formStateRef.current;
+
+    // console.log('회원가입 시도 → Firebase Authentication');
+
+    try {
+      const userCredential = await createUserWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
+    } catch ({ code, message }) {
+      console.error({ errorCode: code, errorMessage: message });
+    }
   };
 
   const handleChangeInput = (e) => {
@@ -51,21 +55,6 @@ export default function SignUp() {
 
   return (
     <BaseLayout className={classes.SignUp}>
-      {/* {isVisible && <EventSubUnsub />}
-      <button type="button" onClick={() => setIsVisible(!isVisible)}>
-        {isVisible ? 'unmount' : 'mount'}
-      </button>
-      <p>{message}</p>
-      <button
-        type="button"
-        onClick={() =>
-          setMessage(
-            message.includes('before update') ? 'after update' : 'before update'
-          )
-        }
-      >
-        update
-      </button> */}
       <h2>회원가입 페이지</h2>
       <form
         className={classes.form}

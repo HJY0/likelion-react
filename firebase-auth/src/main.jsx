@@ -7,7 +7,7 @@ import { app } from './firebase/app';
 console.log(app);
 
 createRoot(document.getElementById('root')).render(
-  <>
+  <StrictMode>
     <App />
-  </>
+  </StrictMode>
 );
