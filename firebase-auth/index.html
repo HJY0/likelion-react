@@ -11,6 +11,11 @@
       crossorigin
     />
     <link rel="icon" href="/logo.svg" />
+    <script>
+      globalThis.addEventListener('keyup', (e) => {
+        console.log('DOM SCRIPT: ', e.key);
+      });
+    </script>
   </head>
   <body>
     <noscript>이 애플리케이션은 JavaScript 활성화가 필요합니다.</noscript>

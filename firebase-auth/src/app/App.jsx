@@ -9,7 +9,7 @@ import { useToggle } from '@/hooks/useToggle';
 /* Component ---------------------------------------------------------------- */
 
 function App() {
-  const { toggle, onToggle, offToggle } = useToggle();
+  const { toggle, onToggle, offToggle } = useToggle(true);
 
   return (
     <div className={classes.App}>
