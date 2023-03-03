@@ -1,12 +1,12 @@
-import { useState } from 'react';
 import PropTypes from 'prop-types';
 import { Container, HomeLink, Logo, Nav } from '@/components';
 import classes from './Header.module.scss';
+import { useGlobalState } from '@/contexts/GlobalState';
 
 /* Component ---------------------------------------------------------------- */
 
-export function Header({ logoLabel, navList: initialNavList }) {
-  const [navList] = useState(initialNavList);
+export function Header() {
+  const { logoLabel, navList } = useGlobalState();
 
   return (
     <header className={classes.Header}>
@@ -36,7 +36,7 @@ const NavLinkType = PropTypes.exact({
 
 Header.propTypes = {
   /**
-   * **내비게이션 리스트**를 설정합니다.  
+   * **내비게이션 리스트**를 설정합니다.
    * `NavLinkType = { id: string, to: string, text: string, active: boolean }`
    * */
   navList: PropTypes.arrayOf(NavLinkType),

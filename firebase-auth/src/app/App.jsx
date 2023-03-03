@@ -1,23 +1,20 @@
 import classes from './App.module.scss';
+import { GlobalStateProvider } from '@/contexts/GlobalState';
 
 /* Pages -------------------------------------------------------------------- */
 
-import SignIn from '@/pages/SignIn/SignIn';
+// import SignIn from '@/pages/SignIn/SignIn';
 import SignUp from '@/pages/SignUp/SignUp';
-import { useToggle } from '@/hooks/useToggle';
+// import { useToggle } from '@/hooks/useToggle';
 
 /* Component ---------------------------------------------------------------- */
 
 function App() {
-  const { toggle, onToggle, offToggle } = useToggle(true);
-
-  return (
+  <GlobalStateProvider>
     <div className={classes.App}>
-      <button type="button" onClick={toggle ? offToggle : onToggle}>
-        TOGGLE
-      </button>
-      {toggle ? <SignUp /> : <SignIn />}
+      <SignUp />
     </div>
-  );
+  </GlobalStateProvider>;
 }
+
 export default App;

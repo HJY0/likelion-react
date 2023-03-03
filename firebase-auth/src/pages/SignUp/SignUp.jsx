@@ -1,7 +1,6 @@
 import { useRef } from 'react';
 import { BaseLayout, FormInput, Button } from '@/components';
 import classes from './SignUp.module.scss';
-import { createAuthUser } from '@/firebase/auth';
 import { useDocumentTitle } from '@/hooks';
 
 const initialFormState = {
@@ -20,6 +19,7 @@ export default function SignUp() {
   useDocumentTitle('회원가입 → Likelion 4th');
 
   const formStateRef = useRef(initialFormState);
+
   const handleReset = (e) => {
     e.preventDefault();
     console.log('reset');
@@ -48,6 +48,7 @@ export default function SignUp() {
   return (
     <BaseLayout className={classes.SignUp}>
       <h2>회원가입 페이지</h2>
+
       <form
         className={classes.form}
         onSubmit={handleSubmit}
