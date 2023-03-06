@@ -7,7 +7,7 @@ import { getPathFromBaseUrl } from '@/utils';
 export function HomeLink({ children }) {
   return (
     <h1 className={classes.HomeLink}>
-      <a href={getPathFromBaseUrl()}>{children}</a>
+      <link to={getPathFromBaseUrl()}>{children}</link>
     </h1>
   );
 }
