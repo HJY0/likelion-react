@@ -1,13 +1,16 @@
 import "./App.css";
-import ReactCounter from "@/ReactCounter/Counter";
-import RecoilCounter from "@/RecoilCounter/Counter";
+import AppFooter from "./AppFooter";
+import AppHeader from "./AppHeader";
+// import ReactCounter from "@/ReactCounter/Counter";
+// import RecoilCounter from "@/RecoilCounter/Counter";
+import PlayList from "./PlayListDisplay";
 
 function App() {
   return (
     <div className="App">
-      <RecoilCounter />
-
-      <ReactCounter />
+      <AppHeader />
+      <PlayList />
+      <AppFooter />
     </div>
   );
 }
